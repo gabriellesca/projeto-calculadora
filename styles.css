@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=DM+Mono:wght@300;400&display=swap');
+
+:root {
+  --fundo:        #080810;
+  --card:         #0f0f1a;
+  --card-borda:   rgba(255,255,255,0.07);
+  --numero:       rgba(255,255,255,0.05);
+  --numero-hov:   rgba(255,255,255,0.10);
+  --operador:     rgba(143,24,73,0.15);
+  --operador-hov: rgba(143,24,73,0.35);
+  --operador-txt: #f0a0bf;
+  --funcao:       rgba(255,255,255,0.04);
+  --funcao-hov:   rgba(255,255,255,0.09);
+  --funcao-txt:   #7a7a9a;
+  --igual:        #8f1849;
+  --igual-hov:    #b02060;
+  --texto:        #f0ede8;
+  --display-txt:  #ffffff;
+  --expr-txt:     #555570;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Mono', monospace;
+  min-height: 100vh;
+  background: var(--fundo);
+  background-image:
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(143,24,73,0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 30% at 80% 100%, rgba(60,20,80,0.2) 0%, transparent 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Card principal ───────────────────────── */
+.calculadora {
+  width: 340px;
+  background: var(--card);
+  border: 1px solid var(--card-borda);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow:
+    0 0 0 1px rgba(143,24,73,0.1),
+    0 30px 80px rgba(0,0,0,0.7),
+    0 0 120px rgba(143,24,73,0.06);
+  opacity: 0;
+  animation: surgir 0.6s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* ── Display ──────────────────────────────── */
+.display-area {
+  position: relative;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px;
+  padding: 20px 22px 16px;
+  margin-bottom: 18px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* Linha decorativa no topo do display */
+.display-area::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(143,24,73,0.6), transparent);
+}
+
+.expressao {
+  font-size: 12px;
+  color: var(--expr-txt);
+  font-weight: 300;
+  min-height: 18px;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.display {
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--display-txt);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  word-break: break-all;
+  transition: font-size 0.15s, color 0.2s;
+}
+
+.display.pequeno  { font-size: 32px; }
+.display.resultado { color: #f0a0bf; }
+
+/* ── Grid botões ──────────────────────────── */
+.botoes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+
+/* ── Botão base ───────────────────────────── */
+button {
+  padding: 20px 0;
+  font-size: 16px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  cursor: pointer;
+  color: var(--texto);
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s, border-color 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+button:active::after { opacity: 0.05; }
+button:active { transform: scale(0.93); }
+
+/* ── Variantes ────────────────────────────── */
+.btn-numero {
+  background: var(--numero);
+  border-color: rgba(255,255,255,0.04);
+}
+.btn-numero:hover {
+  background: var(--numero-hov);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.btn-operador {
+  background: var(--operador);
+  color: var(--operador-txt);
+  font-size: 19px;
+  border-color: rgba(143,24,73,0.15);
+}
+.btn-operador:hover {
+  background: var(--operador-hov);
+  border-color: rgba(143,24,73,0.4);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(143,24,73,0.25);
+}
+
+.btn-funcao {
+  background: var(--funcao);
+  color: var(--funcao-txt);
+  border-color: rgba(255,255,255,0.04);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.btn-funcao:hover {
+  background: var(--funcao-hov);
+  color: var(--texto);
+}
+
+.btn-igual {
+  background: linear-gradient(145deg, #a82058, #6a1036);
+  color: white;
+  font-size: 22px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  border-color: rgba(255,255,255,0.1);
+  box-shadow:
+    0 4px 24px rgba(143,24,73,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-igual:hover {
+  background: linear-gradient(145deg, #c02868, #8f1849);
+  box-shadow:
+    0 6px 32px rgba(143,24,73,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* ── Especiais ────────────────────────────── */
+.zero { grid-column: span 2; }
+
+/* ── Animação de entrada ──────────────────── */
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 360px) {
+  .calculadora { width: 95vw; padding: 16px; }
+  .display { font-size: 38px; }
+}
