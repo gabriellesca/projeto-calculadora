@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://gabriellesca.github.io/calculadora-js/" target="_blank">
+  <a href="https://gabriellesca.github.io/projeto-calculadora/" target="_blank">
     <img src="https://img.shields.io/badge/🚀 Ver%20projeto%20ao%20vivo-8f1849?style=for-the-badge" alt="Demo" />
   </a>
 </p>
