@@ -18,7 +18,7 @@
 
 > *Calculadora dark com suporte a teclado e feedback visual*
 
-![Preview do projeto](preview.png)
+<img width="802" height="693" alt="image" src="https://github.com/user-attachments/assets/28972796-3989-48a0-bad8-8b7ecc0dd5fa" />
 
 ---
 
@@ -81,10 +81,10 @@ Projeto desenvolvido para praticar lógica JavaScript, manipulação do DOM e bo
 
 ```bash
 # Clone o repositório
-git clone https://github.com/gabriellesca/calculadora-js.git
+git clone https://gabriellesca.github.io/projeto-calculadora/
 
 # Entre na pasta
-cd calculadora-js
+cd projeto-calculadora
 
 # Abra o index.html no navegador
 # Ou use a extensão Live Server no VS Code
